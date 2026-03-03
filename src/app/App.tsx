@@ -177,15 +177,7 @@ export default function App() {
           </Panel>
         </Sec>
 
-        {/* Flowchart — pocket below VG + Our Solution, above Screenshot 1 */}
-        <Sec left={1300} top={0} width={500} height={350}>
-          <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <TitleRow label="Process Flow" caption="End-to-end workflow from student submission to public showcase" />
-            <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
-              <CoverImg src={flowchart} alt="Process Flowchart" objectPosition="center center" />
-            </div>
-          </Panel>
-        </Sec>
+        
 
         {/* Screenshot 1 — left col, below Arch */}
         <Sec left={900} top={350} width={900} height={500}>
@@ -335,7 +327,7 @@ export default function App() {
             height: '100%',
           }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: C.white, marginBottom: 5 }}>
-              ⑤ Deployment &amp; Results
+              Deployment &amp; Results
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
               {[
@@ -350,6 +342,15 @@ export default function App() {
               ))}
             </div>
           </div>
+        </Sec>
+        {/* Flowchart — pocket below VG + Our Solution, above Screenshot 1 */}
+        <Sec left={1290} top={0} width={500} height={355}>
+          <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: C.bgAlt }}>
+            <TitleRow label="Process Flow" caption="End-to-end workflow from student submission to public showcase" />
+            <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
+              <CoverImg src={flowchart} alt="Process Flowchart" objectPosition="center center" />
+            </div>
+          </Panel>
         </Sec>
 
         {/* QR Code — bottom-right */}
