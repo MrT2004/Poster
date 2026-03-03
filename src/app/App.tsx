@@ -168,7 +168,7 @@ export default function App() {
         <Sec left={0} top={115} width={900} height={485}>
           <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             <TitleRow
-              label="③ System Architecture"
+              label="System Architecture"
               caption="Decoupled frontend &amp; backend via strictly typed OpenAPI interfaces"
             />
             <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
@@ -180,7 +180,7 @@ export default function App() {
         {/* Flowchart — pocket below VG + Our Solution, above Screenshot 1 */}
         <Sec left={1300} top={0} width={500} height={350}>
           <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <TitleRow label="① Process Flow" caption="End-to-end workflow from student submission to public showcase" />
+            <TitleRow label="Process Flow" caption="End-to-end workflow from student submission to public showcase" />
             <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
               <CoverImg src={flowchart} alt="Process Flowchart" objectPosition="center center" />
             </div>
@@ -192,7 +192,7 @@ export default function App() {
           <ScreenshotPanel
             src={homeScreenshot}
             alt="Public Showcase"
-            title="④ Public Showcase"
+            title="Public Showcase"
             caption="Public-facing portfolio with search &amp; filtering for students, employers, and prospective students."
           />
         </Sec>
@@ -202,7 +202,7 @@ export default function App() {
           <ScreenshotPanel
             src={submissionScreenshot}
             alt="Student Portal"
-            title="④ Student Portal"
+            title="Student Portal"
             caption="Students submit projects with repository links, descriptions, and media attachments."
           />
         </Sec>
@@ -212,7 +212,7 @@ export default function App() {
           <ScreenshotPanel
             src={approvalScreenshot}
             alt="Faculty Review"
-            title="④ Faculty Review"
+            title="Faculty Review"
             caption="Secure faculty moderation queue for reviewing and approving student submissions."
           />
         </Sec>
@@ -249,7 +249,7 @@ export default function App() {
         {/* Visibility Gap — top-right, below header */}
         <Sec left={900} top={0} width={400} height={175}>
           <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt }}>
-            <TitleRow label="① The Visibility Gap" />
+            <TitleRow label="The Visibility Gap" />
             <Bullet text="Incredible capstone &amp; research projects every year" />
             <Bullet text="Work invisible to employers, partners, and prospective students" />
             <Bullet text="Projects isolated on local machines — no central platform" />
@@ -259,7 +259,7 @@ export default function App() {
         {/* Our Solution — top-right, beside VG */}
         <Sec left={900} top={175} width={400} height={180}>
           <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt }}>
-            <TitleRow label="② Our Solution" />
+            <TitleRow label="Our Solution" />
             <Bullet icon="✓" iconColor={C.mid} text="Centralized, public-facing portfolio for all stakeholders" />
             <Bullet icon="✓" iconColor={C.mid} text="Students showcase code, research, and media in one place" />
             <Bullet icon="✓" iconColor={C.mid} text="Tangible evidence of academic rigor for the department" />
