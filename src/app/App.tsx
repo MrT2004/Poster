@@ -83,7 +83,7 @@ function Panel({ children, style = {} }: {
   return (
     <div style={{
       backgroundColor: C.bg,
-      borderRadius: 8,
+      borderRadius: 0,
       padding: 12,
       boxSizing: 'border-box',
       overflow: 'hidden',
@@ -219,7 +219,7 @@ export default function App() {
             gap: 14,
             height: '100%',
             paddingLeft: 14,
-            borderLeft: `3px solid ${C.mid}`,
+            borderLeft: `5px solid ${C.mid}`,
             boxSizing: 'border-box',
           }}>
             <img src={logo} alt="School of Computing Logo"
@@ -249,7 +249,7 @@ export default function App() {
         </Sec>
 
         {/* Our Solution — top-right, beside VG */}
-        <Sec left={900} top={175} width={400} height={180}>
+        <Sec left={900} top={165} width={400} height={190}>
           <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt }}>
             <TitleRow label="Our Solution" />
             <Bullet icon="✓" iconColor={C.mid} text="Centralized, public-facing portfolio for all stakeholders" />
@@ -319,32 +319,29 @@ export default function App() {
           <div style={{
             background: `linear-gradient(120deg, ${C.navy} 0%, ${C.steel} 100%)`,
             borderRadius: 8,
-            padding: '8px 16px',
+            padding: 14,
             boxSizing: 'border-box',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
             height: '100%',
           }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: C.white, marginBottom: 5 }}>
-              Deployment &amp; Results
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+            <TitleRow label="Deployment &amp; Results" light />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1, justifyContent: 'space-around' }}>
               {[
                 'Successfully deployed with Docker containers to SoC development environment',
                 'Active Directory authentication bridged to campus network for seamless SSO',
                 'Scalable foundation ready for university-wide expansion across departments',
               ].map((text, i) => (
-                <div key={i} style={{ display: 'flex', gap: 6, alignItems: 'flex-start' }}>
-                  <span style={{ color: C.accent, flexShrink: 0, lineHeight: 1.35 }}>✓</span>
-                  <span style={{ fontSize: 12, color: C.white, lineHeight: 1.35 }}>{text}</span>
+                <div key={i} style={{ display: 'flex', gap: 8 }}>
+                  <span style={{ color: C.accent, flexShrink: 0, fontSize: 15, lineHeight: 1.4 }}>✓</span>
+                  <span style={{ fontSize: 13, color: '#b8d4e0', lineHeight: 1.4 }}>{text}</span>
                 </div>
               ))}
             </div>
           </div>
         </Sec>
         {/* Flowchart — pocket below VG + Our Solution, above Screenshot 1 */}
-        <Sec left={1290} top={0} width={500} height={355}>
+        <Sec left={1290} top={0} width={510} height={355}>
           <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: C.bgAlt }}>
             <TitleRow label="Process Flow" caption="End-to-end workflow from student submission to public showcase" />
             <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
