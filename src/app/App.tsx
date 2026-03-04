@@ -1,6 +1,6 @@
 ﻿import { QRCodeSVG } from 'qrcode.react';
 import logo from '../assets/9972ad62b7153604242855c6332bd6666b3eb211.png';
-import architectureDiagram from '../assets/f401dbc33754fc13969b1844c2219d8e1f7a3a2d.png';
+import architectureDiagram from '../assets/ArchDiagram.svg';
 import homeScreenshot from '../assets/0df32a40104d837a379102d5510bc0c39fe02978.png';
 import submissionScreenshot from '../assets/31fdfc909d321a10f53000466673fb97651d5aa4.png';
 import approvalScreenshot from '../assets/064bba6c396436e63606cca0b4e67a133b7652f7.png';
@@ -43,19 +43,19 @@ const POSTER_W = 1800;
 const POSTER_H = 1350;
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
-function Bullet({ text, icon = '•', iconColor = C.steel }: {
-  text: string; icon?: string; iconColor?: string;
+function Bullet({ text, icon = '•', iconColor = C.steel, fontSize = 17 }: {
+  text: string; icon?: string; iconColor?: string; fontSize?: number;
 }) {
   return (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 5 }}>
-      <span style={{ color: iconColor, flexShrink: 0, lineHeight: 1.45 }}>{icon}</span>
-      <span style={{ fontSize: 15, color: C.text, lineHeight: 1.45 }}>{text}</span>
+    <div style={{ display: 'flex', gap: 8 }}>
+      <span style={{ color: iconColor, flexShrink: 0, lineHeight: 1.45, fontSize }}>{icon}</span>
+      <span style={{ fontSize, color: C.text, lineHeight: 1.45 }}>{text}</span>
     </div>
   );
 }
 
-function TitleRow({ label, caption, light = false }: {
-  label: string; caption?: string; light?: boolean;
+function TitleRow({ label, caption, light = false, style = {} }: {
+  label: string; caption?: string; light?: boolean; style?: React.CSSProperties;
 }) {
   return (
     <div style={{
@@ -65,7 +65,7 @@ function TitleRow({ label, caption, light = false }: {
       marginBottom: 6,
       flexShrink: 0,
     }}>
-      <span style={{ fontSize: 15, fontWeight: 700, color: light ? C.white : C.navy, flexShrink: 0, fontFamily: "'Space Grotesk', sans-serif" }}>
+      <span style={{ fontSize: 15, fontWeight: 700, color: light ? C.white : C.navy, flexShrink: 0, fontFamily: "'Space Grotesk', sans-serif", ...style }}>
         {label}
       </span>
       {caption && (
@@ -240,38 +240,43 @@ export default function App() {
 
         {/* Visibility Gap — top-right, below header */}
         <Sec left={900} top={0} width={400} height={175}>
-          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt }}>
-            <TitleRow label="The Visibility Gap" />
-            <Bullet text="Incredible capstone &amp; research projects every year" />
-            <Bullet text="Work invisible to employers, partners, and prospective students" />
-            <Bullet text="Projects isolated on local machines — no central platform" />
+          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt, display: 'flex', flexDirection: 'column' }}>
+            <TitleRow style={{ fontSize: 18, fontWeight: 600 }} label="The Visibility Gap" />
+            <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
+              <Bullet fontSize={15} text="Impactful student projects produced each semester" />
+              <Bullet fontSize={15} text="Work stays invisible to employers and partners" />
+              <Bullet fontSize={15} text="No central platform to share or discover student work" />
+            </div>
           </Panel>
         </Sec>
 
         {/* Our Solution — top-right, beside VG */}
         <Sec left={900} top={165} width={400} height={190}>
-          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt }}>
-            <TitleRow label="Our Solution" />
-            <Bullet icon="✓" iconColor={C.mid} text="Centralized, public-facing portfolio for all stakeholders" />
-            <Bullet icon="✓" iconColor={C.mid} text="Students showcase code, research, and media in one place" />
-            <Bullet icon="✓" iconColor={C.mid} text="Tangible evidence of academic rigor for the department" />
+          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt, display: 'flex', flexDirection: 'column' }}>
+            <TitleRow style={{ fontSize: 18, fontWeight: 600 }} label="Our Solution" />
+            <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
+              <Bullet fontSize={15} icon="✓" iconColor={C.mid} text="One public portfolio visible to all stakeholders" />
+              <Bullet fontSize={15} icon="✓" iconColor={C.mid} text="Students showcase projects, code &amp; media together" />
+              <Bullet fontSize={15} icon="✓" iconColor={C.mid} text="Concrete evidence of the academic rigor" />
+            </div>
           </Panel>
         </Sec>
 
         {/* Security & Identity — bottom-left pocket */}
         <Sec left={0} top={1095} width={350} height={255}>
-          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.navy}`, backgroundColor: 'rgba(206,213,74,0.10)' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1, justifyContent: 'space-around' }}>
+          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.navy}`, backgroundColor: 'rgba(206,213,74,0.10)', display: 'flex', flexDirection: 'column' }}>
+            <TitleRow label="Security &amp; Identity" />
+            <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
               {[
                 { title: 'AD / LDAP Integration',     desc: 'Campus SSO via Active Directory for seamless login' },
                 { title: 'JWT Session Management',    desc: 'Secure, stateless token-based authentication' },
                 { title: 'Role-Based Access Control', desc: "Strict boundaries between 'Student' and 'Faculty' roles" },
               ].map(({ title, desc }) => (
                 <div key={title} style={{ display: 'flex', gap: 8 }}>
-                  <span style={{ color: C.navy, flexShrink: 0, fontSize: 15, lineHeight: 1.4 }}>✓</span>
+                  <span style={{ color: C.navy, flexShrink: 0, fontSize: 17, lineHeight: 1.4 }}>✓</span>
                   <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: C.navy }}>{title}</div>
-                    <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.3 }}>{desc}</div>
+                    <div style={{ fontSize: 17, fontWeight: 600, color: C.navy }}>{title}</div>
+                    <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.3 }}>{desc}</div>
                   </div>
                 </div>
               ))}
@@ -282,7 +287,8 @@ export default function App() {
         {/* Tech Stack — bottom-left, beside Security */}
         <Sec left={350} top={1095} width={200} height={255}>
           <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'rgba(206,213,74,0.10)' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: 1, justifyContent: 'space-around' }}>
+            <TitleRow label="Tech Stack" />
+            <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
               {[
                 { name: 'React + TypeScript', color: '#61DAFB' },
                 { name: 'ASP.NET Core',       color: '#512BD4' },
@@ -306,16 +312,17 @@ export default function App() {
 
         {/* Deployment & Results — bottom strip */}
         <Sec left={550} top={1095} width={350} height={255}>
-          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.navy}`, backgroundColor: 'rgba(206,213,74,0.10)' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1, justifyContent: 'space-around' }}>
+          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.navy}`, backgroundColor: 'rgba(206,213,74,0.10)', display: 'flex', flexDirection: 'column' }}>
+            <TitleRow label="Deployment &amp; Results" />
+            <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
               {[
                 'Successfully deployed with Docker containers to SoC development environment',
                 'Active Directory authentication bridged to campus network for seamless SSO',
                 'Scalable foundation ready for university-wide expansion across departments',
               ].map((text, i) => (
                 <div key={i} style={{ display: 'flex', gap: 8 }}>
-                  <span style={{ color: C.navy, flexShrink: 0, fontSize: 15, lineHeight: 1.4 }}>✓</span>
-                  <span style={{ fontSize: 13, color: C.text, lineHeight: 1.4 }}>{text}</span>
+                  <span style={{ color: C.navy, flexShrink: 0, fontSize: 17, lineHeight: 1.4 }}>✓</span>
+                  <span style={{ fontSize: 17, color: C.text, lineHeight: 1.4 }}>{text}</span>
                 </div>
               ))}
             </div>
