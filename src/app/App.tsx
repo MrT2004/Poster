@@ -6,17 +6,17 @@ import submissionScreenshot from '../assets/31fdfc909d321a10f53000466673fb97651d
 import approvalScreenshot from '../assets/064bba6c396436e63606cca0b4e67a133b7652f7.png';
 import flowchart from '../assets/flowchart.png';
 
-// Design tokens
+// Design tokens — matched to portfolio.soc.southern.edu color scheme
 const C = {
-  navy:   '#1a4d6b',
-  mid:    '#2c5f7c',
-  steel:  '#4a8fa8',
-  muted:  '#5a7c8f',
-  text:   '#3d5a6b',
-  bg:     '#f0f4f7',
-  bgAlt:  '#eaf2f7',
-  border: '#d0dce3',
-  accent: '#7ec8e3',
+  navy:   '#184f2c',   // primary dark forest green (headings, borders)
+  mid:    '#184f2c',   // same — used for dark panel backgrounds
+  steel:  '#ced54a',   // lime yellow-green secondary accent
+  muted:  '#64748b',   // slate muted text
+  text:   '#1a1a2e',   // near-black foreground
+  bg:     '#eef7f1',   // very light mint-tinted panel background
+  bgAlt:  '#e4f0ea',   // slightly deeper mint alt background
+  border: '#e2e8f0',   // light gray border
+  accent: '#ced54a',   // lime — checkmarks and highlights
   white:  '#ffffff',
 };
 
@@ -65,11 +65,11 @@ function TitleRow({ label, caption, light = false }: {
       marginBottom: 6,
       flexShrink: 0,
     }}>
-      <span style={{ fontSize: 15, fontWeight: 700, color: light ? C.white : C.navy, flexShrink: 0 }}>
+      <span style={{ fontSize: 15, fontWeight: 700, color: light ? C.white : C.navy, flexShrink: 0, fontFamily: "'Space Grotesk', sans-serif" }}>
         {label}
       </span>
       {caption && (
-        <span style={{ fontSize: 13, color: light ? '#b8d4e0' : C.text, fontStyle: 'italic', lineHeight: 1.3 }}>
+        <span style={{ fontSize: 13, color: light ? '#a8d5ba' : C.muted, fontStyle: 'italic', lineHeight: 1.3, fontFamily: "'Inter', sans-serif" }}>
           {caption}
         </span>
       )}
@@ -146,7 +146,7 @@ export default function App() {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#b8c8cf',
+      backgroundColor: '#d4e0d8',
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'center',
@@ -260,16 +260,7 @@ export default function App() {
 
         {/* Security & Identity — bottom-left pocket */}
         <Sec left={0} top={1095} width={350} height={255}>
-          <div style={{
-            backgroundColor: C.mid,
-            borderRadius: 8,
-            padding: 14,
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            boxSizing: 'border-box',
-          }}>
-            <TitleRow label="Security &amp; Identity" light />
+          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.navy}`, backgroundColor: 'rgba(206,213,74,0.10)' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1, justifyContent: 'space-around' }}>
               {[
                 { title: 'AD / LDAP Integration',     desc: 'Campus SSO via Active Directory for seamless login' },
@@ -277,21 +268,20 @@ export default function App() {
                 { title: 'Role-Based Access Control', desc: "Strict boundaries between 'Student' and 'Faculty' roles" },
               ].map(({ title, desc }) => (
                 <div key={title} style={{ display: 'flex', gap: 8 }}>
-                  <span style={{ color: C.accent, flexShrink: 0, fontSize: 15, lineHeight: 1.4 }}>✓</span>
+                  <span style={{ color: C.navy, flexShrink: 0, fontSize: 15, lineHeight: 1.4 }}>✓</span>
                   <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: C.white }}>{title}</div>
-                    <div style={{ fontSize: 13, color: '#b8d4e0', lineHeight: 1.3 }}>{desc}</div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: C.navy }}>{title}</div>
+                    <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.3 }}>{desc}</div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </Panel>
         </Sec>
 
         {/* Tech Stack — bottom-left, beside Security */}
         <Sec left={350} top={1095} width={200} height={255}>
-          <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <TitleRow label="Tech Stack" />
+          <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'rgba(206,213,74,0.10)' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: 1, justifyContent: 'space-around' }}>
               {[
                 { name: 'React + TypeScript', color: '#61DAFB' },
@@ -316,16 +306,7 @@ export default function App() {
 
         {/* Deployment & Results — bottom strip */}
         <Sec left={550} top={1095} width={350} height={255}>
-          <div style={{
-            background: `linear-gradient(120deg, ${C.navy} 0%, ${C.steel} 100%)`,
-            borderRadius: 8,
-            padding: 14,
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-          }}>
-            <TitleRow label="Deployment &amp; Results" light />
+          <Panel style={{ height: '100%', borderLeft: `4px solid ${C.navy}`, backgroundColor: 'rgba(206,213,74,0.10)' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1, justifyContent: 'space-around' }}>
               {[
                 'Successfully deployed with Docker containers to SoC development environment',
@@ -333,12 +314,12 @@ export default function App() {
                 'Scalable foundation ready for university-wide expansion across departments',
               ].map((text, i) => (
                 <div key={i} style={{ display: 'flex', gap: 8 }}>
-                  <span style={{ color: C.accent, flexShrink: 0, fontSize: 15, lineHeight: 1.4 }}>✓</span>
-                  <span style={{ fontSize: 13, color: '#b8d4e0', lineHeight: 1.4 }}>{text}</span>
+                  <span style={{ color: C.navy, flexShrink: 0, fontSize: 15, lineHeight: 1.4 }}>✓</span>
+                  <span style={{ fontSize: 13, color: C.text, lineHeight: 1.4 }}>{text}</span>
                 </div>
               ))}
             </div>
-          </div>
+          </Panel>
         </Sec>
         {/* Flowchart — pocket below VG + Our Solution, above Screenshot 1 */}
         <Sec left={1290} top={0} width={510} height={355}>
@@ -356,8 +337,8 @@ export default function App() {
             backgroundColor: C.white,
             borderRadius: 10,
             padding: '6px 12px',
-            border: `2px solid ${C.steel}`,
-            boxShadow: '0 4px 20px rgba(74,143,168,0.20)',
+            border: `2px solid ${C.navy}`,
+            boxShadow: '0 4px 20px rgba(24,79,44,0.20)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -370,11 +351,11 @@ export default function App() {
               value="https://portfolio.soc.southern.edu"
               size={120}
               bgColor={C.white}
-              fgColor={C.navy}
+              fgColor='#184f2c'
               level="M"
             />
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: C.navy, textAlign: 'center' }}>Scan to Visit</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: C.navy, textAlign: 'center', fontFamily: "'Space Grotesk', sans-serif" }}>Scan to Visit</div>
               <div style={{ fontSize: 9, color: C.muted, marginTop: 1, textAlign: 'center' }}>portfolio.soc.southern.edu</div>
             </div>
           </div>
