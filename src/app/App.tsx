@@ -225,15 +225,18 @@ export default function App() {
             <img src={logo} alt="School of Computing Logo"
               style={{ height: 80, width: 'auto', flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: 22, fontWeight: 800, color: C.navy, lineHeight: 1.2 }}>
-                Department Portfolio Web App: Centralizing Student Achievements
+              <div style={{ fontSize: 30, fontWeight: 800, color: C.navy, lineHeight: 1.2 }}>
+                Department Portfolio Web App
               </div>
-              <div style={{ fontSize: 12, color: C.muted, fontStyle: 'italic', marginTop: 4 }}>
-                Bridging the Gap Between Curriculum and Tangible Outcomes
-              </div>
+                <div style={{ fontSize: 18, color: C.navy, fontStyle: 'italic', marginTop: 4 }}>
+                Centralizing Student Achievements
+                </div>
               <div style={{ fontSize: 11, color: C.muted, marginTop: 3 }}>
                 Tommy Aitchison · Phillip Suvacarov
               </div>
+                <div style={{ fontSize: 11, color: C.muted, marginTop: 3 }}>
+                <span style={{ fontWeight: 600, color: C.navy }}>Advisor:</span> Robert Ordonez
+                </div>
             </div>
           </div>
         </Sec>
