@@ -94,8 +94,8 @@ function Panel({ children, style = {} }: {
   );
 }
 
-function CoverImg({ src, alt, objectPosition = 'top center' }: {
-  src: string; alt: string; objectPosition?: string;
+function CoverImg({ src, alt, objectPosition = 'top center', withBorder = true }: {
+  src: string; alt: string; objectPosition?: string; withBorder?: boolean;
 }) {
   return (
     <img
@@ -108,7 +108,7 @@ function CoverImg({ src, alt, objectPosition = 'top center' }: {
         objectPosition,
         display: 'block',
         borderRadius: 5,
-        border: `1px solid ${C.border}`,
+        border: withBorder ? `1px solid ${C.border}` : 'none',
       }}
     />
   );
@@ -172,7 +172,7 @@ export default function App() {
               caption="Decoupled frontend &amp; backend via strictly typed OpenAPI interfaces"
             />
             <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
-              <CoverImg src={architectureDiagram} alt="System Architecture Diagram" objectPosition="left top" />
+              <CoverImg src={architectureDiagram} alt="System Architecture Diagram" objectPosition="left top" withBorder={false} />
             </div>
           </Panel>
         </Sec>
@@ -336,7 +336,7 @@ export default function App() {
           <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: C.bgAlt }}>
             <TitleRow label="Process Flow" caption="End-to-end workflow from student submission to public showcase" />
             <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
-              <CoverImg src={flowchart} alt="Process Flowchart" objectPosition="center center" />
+              <CoverImg src={flowchart} alt="Process Flowchart" objectPosition="center center" withBorder={false} />
             </div>
           </Panel>
         </Sec>
