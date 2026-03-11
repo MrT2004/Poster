@@ -235,7 +235,7 @@ export default function App() {
                 Tommy Aitchison · Phillip Suvacarov
               </div>
                 <div style={{ fontSize: 11, color: C.muted, marginTop: 3 }}>
-                <span style={{ fontWeight: 600, color: C.navy }}>Advisor:</span> Robert Ordonez
+                <span style={{ fontWeight: 600, color: C.navy }}>Advisor:</span> Robert Ordoñez
                 </div>
             </div>
           </div>
