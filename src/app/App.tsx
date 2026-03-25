@@ -26,7 +26,7 @@ const POSTER_W = 1800;
 const POSTER_H = 1350;
 
 // ─── Helpers (Aesthetics Restored) ──────────────────────────────────────────
-function Bullet({ text, icon = '•', iconColor = C.steel, fontSize = 17 }: {
+function Bullet({ text, icon = '•', iconColor = C.mid, fontSize = 17 }: {
   text: string; icon?: string; iconColor?: string; fontSize?: number;
 }) {
   return (
@@ -240,7 +240,7 @@ export default function App() {
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
             <Bullet fontSize={17} text="Impactful student projects produced each semester" />
             <Bullet fontSize={17} text="Work stays invisible to employers and partners" />
-            <Bullet fontSize={17} text="No central platform to share or discover student work" />
+            <Bullet fontSize={17} text="No central platform to discover student work" />
           </div>
         </Panel>
       </Sec>
