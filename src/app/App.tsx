@@ -65,11 +65,11 @@ function TitleRow({ label, caption, light = false, style = {} }: {
       marginBottom: 6,
       flexShrink: 0,
     }}>
-      <span style={{ fontSize: 15, fontWeight: 700, color: light ? C.white : C.navy, flexShrink: 0, fontFamily: "'Space Grotesk', sans-serif", ...style }}>
+      <span style={{ fontSize: 19, fontWeight: 700, color: light ? C.white : C.navy, flexShrink: 0, fontFamily: "'Space Grotesk', sans-serif", ...style }}>
         {label}
       </span>
       {caption && (
-        <span style={{ fontSize: 13, color: light ? '#a8d5ba' : C.muted, fontStyle: 'italic', lineHeight: 1.3, fontFamily: "'Inter', sans-serif" }}>
+        <span style={{ fontSize: 15, color: light ? '#a8d5ba' : C.muted, fontStyle: 'italic', lineHeight: 1.3, fontFamily: "'Inter', sans-serif" }}>
           {caption}
         </span>
       )}
@@ -131,11 +131,11 @@ function ScreenshotPanel({ src, alt, title, caption }: {
 }
 
 /** Absolute section wrapper */
-function Sec({ left, top, width, height, children }: {
-  left: number; top: number; width: number; height: number; children: React.ReactNode;
+function Sec({ left, top, width, height, zIndex = 1, children }: {
+  left: number; top: number; width: number; height: number; zIndex?: number; children: React.ReactNode;
 }) {
   return (
-    <div style={{ position: 'absolute', left, top, width, height, boxSizing: 'border-box' }}>
+    <div style={{ position: 'absolute', left, top, width, height, zIndex, boxSizing: 'border-box' }}>
       {children}
     </div>
   );
@@ -165,14 +165,18 @@ export default function App() {
         {/* ═══ IMAGE COMPONENTS (sizes fixed by user) ═══ */}
 
         {/* Architecture — left col, top */}
-        <Sec left={0} top={115} width={900} height={485}>
-          <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <TitleRow
-              label="System Architecture"
-              caption="Decoupled frontend &amp; backend via strictly typed OpenAPI interfaces"
-            />
-            <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
-              <CoverImg src={architectureDiagram} alt="System Architecture Diagram" objectPosition="left top" withBorder={false} />
+        <Sec left={0} top={115} width={900} height={485} zIndex={20}>
+          <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'visible', padding: 0 }}>
+            <div style={{ padding: '12px 12px 0 12px' }}>
+              <TitleRow
+                label="System Architecture"
+                caption="Decoupled frontend &amp; backend via strictly typed OpenAPI interfaces"
+              />
+            </div>
+            <div style={{ flex: 1, overflow: 'visible', borderRadius: 5, minHeight: 0, position: 'relative' }}>
+              <div style={{ height: 'calc(100% + 10px)', transform: 'translateY(-10px)', position: 'relative', zIndex: 3 }}>
+                <CoverImg src={architectureDiagram} alt="System Architecture Diagram" objectPosition="left top" withBorder={false} />
+              </div>
             </div>
           </Panel>
         </Sec>
@@ -212,7 +216,7 @@ export default function App() {
         {/* ═══ TEXT COMPONENTS (resized to fit pockets) ═══ */}
 
         {/* Header — top-right pocket */}
-        <Sec left={0} top={0} width={900} height={116}>
+        <Sec left={0} top={0} width={900} height={116} zIndex={30}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -225,18 +229,16 @@ export default function App() {
             <img src={logo} alt="School of Computing Logo"
               style={{ height: 80, width: 'auto', flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: 30, fontWeight: 800, color: C.navy, lineHeight: 1.2 }}>
+              <div style={{ fontSize: 38, fontWeight: 800, color: C.navy, lineHeight: 1.2 }}>
                 Department Portfolio Web App
               </div>
                 <div style={{ fontSize: 18, color: C.navy, fontStyle: 'italic', marginTop: 4 }}>
                 Centralizing Student Achievements
                 </div>
-              <div style={{ fontSize: 11, color: C.muted, marginTop: 3 }}>
-                Tommy Aitchison · Phillip Suvacarov
+              <div style={{ fontSize: 15, color: C.muted, marginTop: 3, display: 'flex', gap: 16, alignItems: 'baseline' }}>
+                <span>Tommy Aitchison · Phillip Suvacarov</span>
+                <span><span style={{ fontWeight: 600, color: C.navy }}>Advisor:</span> Robert Ordoñez</span>
               </div>
-                <div style={{ fontSize: 11, color: C.muted, marginTop: 3 }}>
-                <span style={{ fontWeight: 600, color: C.navy }}>Advisor:</span> Robert Ordoñez
-                </div>
             </div>
           </div>
         </Sec>
@@ -246,9 +248,9 @@ export default function App() {
           <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt, display: 'flex', flexDirection: 'column' }}>
             <TitleRow style={{ fontSize: 18, fontWeight: 600 }} label="The Visibility Gap" />
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
-              <Bullet fontSize={15} text="Impactful student projects produced each semester" />
-              <Bullet fontSize={15} text="Work stays invisible to employers and partners" />
-              <Bullet fontSize={15} text="No central platform to share or discover student work" />
+              <Bullet fontSize={17} text="Impactful student projects produced each semester" />
+              <Bullet fontSize={17} text="Work stays invisible to employers and partners" />
+              <Bullet fontSize={17} text="No central platform to share or discover student work" />
             </div>
           </Panel>
         </Sec>
@@ -258,9 +260,9 @@ export default function App() {
           <Panel style={{ height: '100%', borderLeft: `4px solid ${C.mid}`, backgroundColor: C.bgAlt, display: 'flex', flexDirection: 'column' }}>
             <TitleRow style={{ fontSize: 18, fontWeight: 600 }} label="Our Solution" />
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-evenly' }}>
-              <Bullet fontSize={15} icon="✓" iconColor={C.mid} text="One public portfolio visible to all stakeholders" />
-              <Bullet fontSize={15} icon="✓" iconColor={C.mid} text="Students showcase projects, code &amp; media together" />
-              <Bullet fontSize={15} icon="✓" iconColor={C.mid} text="Concrete evidence of the academic rigor" />
+              <Bullet fontSize={17} icon="✓" iconColor={C.mid} text="One public portfolio visible to all stakeholders" />
+              <Bullet fontSize={17} icon="✓" iconColor={C.mid} text="Students showcase projects, code &amp; media together" />
+              <Bullet fontSize={17} icon="✓" iconColor={C.mid} text="Concrete evidence of the academic rigor" />
             </div>
           </Panel>
         </Sec>
@@ -279,7 +281,7 @@ export default function App() {
                   <span style={{ color: C.navy, flexShrink: 0, fontSize: 17, lineHeight: 1.4 }}>✓</span>
                   <div>
                     <div style={{ fontSize: 17, fontWeight: 600, color: C.navy }}>{title}</div>
-                    <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.3 }}>{desc}</div>
+                    <div style={{ fontSize: 15, color: C.muted, lineHeight: 1.3 }}>{desc}</div>
                   </div>
                 </div>
               ))}
@@ -306,7 +308,7 @@ export default function App() {
                   borderLeft: `4px solid ${color}`,
                   boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
                 }}>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{name}</span>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: C.text }}>{name}</span>
                 </div>
               ))}
             </div>
@@ -335,14 +337,16 @@ export default function App() {
         <Sec left={1290} top={0} width={510} height={355}>
           <Panel style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: C.bgAlt }}>
             <TitleRow label="Process Flow" caption="End-to-end workflow from student submission to public showcase" />
-            <div style={{ flex: 1, overflow: 'hidden', borderRadius: 5, minHeight: 0 }}>
-              <CoverImg src={flowchart} alt="Process Flowchart" objectPosition="center center" withBorder={false} />
+            <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+              <div style={{ height: 'calc(100% + 70px)', transform: 'translateY(-50px)' }}>
+                <CoverImg src={flowchart} alt="Process Flowchart" objectPosition="center center" withBorder={false} />
+              </div>
             </div>
           </Panel>
         </Sec>
 
         {/* QR Code — bottom-right */}
-        <Sec left={810} top={565} width={180} height={220}>
+        <Sec left={810} top={565} width={180} height={220} zIndex={30}>
           <div style={{
             backgroundColor: C.white,
             borderRadius: 10,
@@ -365,8 +369,8 @@ export default function App() {
               level="M"
             />
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: C.navy, textAlign: 'center', fontFamily: "'Space Grotesk', sans-serif" }}>Scan to Visit</div>
-              <div style={{ fontSize: 9, color: C.muted, marginTop: 1, textAlign: 'center' }}>portfolio.soc.southern.edu</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: C.navy, textAlign: 'center', fontFamily: "'Space Grotesk', sans-serif" }}>Scan to Visit</div>
+              <div style={{ fontSize: 15, color: C.muted, marginTop: 1, textAlign: 'center' }}>portfolio.soc.southern.edu</div>
             </div>
           </div>
         </Sec>
