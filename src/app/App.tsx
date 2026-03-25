@@ -343,7 +343,7 @@ export default function App() {
               Scan to Visit
             </div>
             {/* RESTORED: The explicit URL line */}
-            <div style={{ fontSize: 16, color: C.muted, marginTop: 1, textAlign: 'center' }}>
+            <div style={{ fontSize: 15, color: C.muted, marginTop: 1, textAlign: 'center' }}>
               portfolio.soc.southern.edu
             </div>
           </div>
