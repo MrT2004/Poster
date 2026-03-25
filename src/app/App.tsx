@@ -189,7 +189,7 @@ export default function App() {
           src={submissionScreenshot}
           alt="Student Portal"
           title="Student Portal"
-          caption="Students submit projects with repository links, descriptions, and media attachments."
+          caption="Students submit projects with repository links, descriptions, and attachments."
         />
       </Sec>
 
