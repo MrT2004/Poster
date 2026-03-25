@@ -346,7 +346,7 @@ export default function App() {
         </Sec>
 
         {/* QR Code — bottom-right */}
-        <Sec left={810} top={565} width={180} height={220} zIndex={30}>
+        <Sec left={805} top={565} width={190} height={220} zIndex={30}>
           <div style={{
             backgroundColor: C.white,
             borderRadius: 10,
